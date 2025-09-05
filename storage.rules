@@ -1,0 +1,45 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Default deny all
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+    
+    // User profile images
+    match /users/{userId}/profile_image {
+      // Anyone can read profile images
+      allow read: if true;
+      // Only the user can upload their own profile image
+      allow write: if request.auth != null && request.auth.uid == userId &&
+                  request.resource.size < 5 * 1024 * 1024 && // 5MB max
+                  request.resource.contentType.matches('image/.*');
+    }
+    
+    // User cover photos
+    match /users/{userId}/cover_photo {
+      // Anyone can read cover photos
+      allow read: if true;
+      // Only the user can upload their own cover photo
+      allow write: if request.auth != null && request.auth.uid == userId &&
+                  request.resource.size < 10 * 1024 * 1024 && // 10MB max
+                  request.resource.contentType.matches('image/.*');
+    }
+    
+    // User private files
+    match /users/{userId}/private/{fileName} {
+      // Only the user can read and write their private files
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Public images (models, etc.)
+    match /public/{imageId} {
+      // Anyone can read public images
+      allow read: if true;
+      // Only admins can upload public images
+      allow write: if request.auth != null && request.auth.token.admin == true &&
+                   request.resource.size < 20 * 1024 * 1024 && // 20MB max
+                   request.resource.contentType.matches('image/.*');
+    }
+  }
+} 

@@ -1,0 +1,592 @@
+/* BMW Vehicle Configurator Styles */
+.vehicle-configurator {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.configurator-header {
+  background: #000;
+  color: #fff;
+  padding: 30px;
+  text-align: center;
+}
+
+.configurator-header h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.configurator-header p {
+  color: #ccc;
+  font-size: 16px;
+}
+
+.configurator-tabs {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.configurator-tabs::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  color: #999;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background: #0066B1;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+  z-index: 1;
+}
+
+.tab-btn:hover {
+  color: #fff;
+}
+
+.tab-btn.active {
+  color: #fff;
+}
+
+.tab-btn.active::after {
+  width: 80%;
+}
+
+.configurator-body {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Model Selection Styles */
+.model-selection {
+  padding: 40px;
+  width: 100%;
+}
+
+.model-selection h3 {
+  font-size: 22px;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.model-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.model-option {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.model-option:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.model-option img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.model-option h4 {
+  padding: 20px 20px 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.model-option .price {
+  padding: 0 20px 20px;
+  color: #666;
+  font-size: 15px;
+}
+
+.select-model-btn {
+  background: #0066B1;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.select-model-btn:hover {
+  background: #0077CC;
+}
+
+/* Vehicle Configuration Styles */
+.vehicle-preview {
+  flex: 1;
+  padding: 40px;
+  text-align: center;
+}
+
+.vehicle-preview img {
+  max-width: 100%;
+  height: auto;
+  max-height: 300px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.configuration-options {
+  flex: 1;
+  min-width: 400px;
+  padding: 40px;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-content h3 {
+  font-size: 22px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Color Options */
+.color-options {
+  display: grid;
+  gap: 20px;
+}
+
+.color-option {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.color-option:hover {
+  background: #f0f0f0;
+}
+
+.color-option.active {
+  background: #e6f2fc;
+  border: 1px solid #0066B1;
+}
+
+.color-swatch {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.color-info {
+  flex: 1;
+}
+
+.color-info h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.price {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Wheel Options */
+.wheel-options {
+  display: grid;
+  gap: 20px;
+}
+
+.wheel-option {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wheel-option:hover {
+  background: #f0f0f0;
+}
+
+.wheel-option.active {
+  background: #e6f2fc;
+  border: 1px solid #0066B1;
+}
+
+.wheel-image {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.wheel-image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.wheel-info {
+  flex: 1;
+}
+
+.wheel-info h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Interior Options */
+.interior-options {
+  display: grid;
+  gap: 20px;
+}
+
+.interior-option {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.interior-option:hover {
+  background: #f0f0f0;
+}
+
+.interior-option.active {
+  background: #e6f2fc;
+  border: 1px solid #0066B1;
+}
+
+.interior-image {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.interior-image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.interior-info {
+  flex: 1;
+}
+
+.interior-info h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+/* Package Options */
+.package-options {
+  display: grid;
+  gap: 20px;
+}
+
+.package-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.package-option:hover {
+  background: #f0f0f0;
+}
+
+.package-option.active {
+  background: #e6f2fc;
+  border: 1px solid #0066B1;
+}
+
+.package-info {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.package-info h4 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.package-info .description {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.toggle-package-btn {
+  background: #0066B1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-package-btn:hover {
+  background: #0077CC;
+}
+
+.package-option.active .toggle-package-btn {
+  background: #ff5757;
+}
+
+.package-option.active .toggle-package-btn:hover {
+  background: #ff3a3a;
+}
+
+/* Summary Styles */
+.configuration-summary {
+  background: #f9f9f9;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.packages-summary {
+  font-weight: 600;
+  color: #333;
+  margin-top: 10px;
+}
+
+.package-item {
+  padding-left: 20px;
+}
+
+.summary-total {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.summary-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.summary-btn {
+  flex: 1;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.save-config {
+  background: #0066B1;
+  color: white;
+  border: none;
+}
+
+.save-config:hover {
+  background: #0077CC;
+}
+
+.test-drive {
+  background: #333;
+  color: white;
+  border: none;
+}
+
+.test-drive:hover {
+  background: #444;
+}
+
+/* Footer Navigation */
+.configurator-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: #f0f0f0;
+}
+
+.back-btn, .next-btn {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn {
+  background: #ddd;
+  color: #333;
+}
+
+.back-btn:hover {
+  background: #ccc;
+}
+
+.next-btn {
+  background: #0066B1;
+  color: white;
+}
+
+.next-btn:hover {
+  background: #0077CC;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .configurator-body {
+    flex-direction: column;
+  }
+  
+  .vehicle-preview,
+  .configuration-options {
+    width: 100%;
+    padding: 30px;
+  }
+  
+  .configuration-options {
+    min-width: unset;
+  }
+}
+
+@media (max-width: 768px) {
+  .configurator-tabs {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .tab-btn {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+  
+  .model-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .summary-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 576px) {
+  .configurator-header,
+  .vehicle-preview,
+  .configuration-options,
+  .configurator-footer {
+    padding: 20px;
+  }
+  
+  .configurator-header h2 {
+    font-size: 24px;
+  }
+  
+  .color-option,
+  .wheel-option,
+  .interior-option,
+  .package-option {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .color-swatch {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .wheel-image,
+  .interior-image {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  
+  .package-info {
+    padding-right: 0;
+    margin-bottom: 15px;
+  }
+} 

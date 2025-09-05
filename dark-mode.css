@@ -1,0 +1,621 @@
+/* BMW Website Dark Mode Styles */
+
+:root {
+  /* Light Mode (Default) Variables */
+  --primary-bg: #ffffff;
+  --secondary-bg: #f8f8f8;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --text-light: #666666;
+  --border-color: #e0e0e0;
+  --accent-color: #0066B1;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --header-bg: rgba(0, 0, 0, 0.8);
+  --footer-bg: #141414;
+  --overlay-bg: rgba(0, 0, 0, 0.7);
+  --section-bg-alt: #f8f8f8;
+  
+  /* Transition for smooth theme switching */
+  --theme-transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+  --primary-bg: #121212;
+  --secondary-bg: #1e1e1e;
+  --card-bg: #2d2d2d;
+  --text-color: #f0f0f0;
+  --text-light: #b0b0b0;
+  --border-color: #444444;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --header-bg: rgba(0, 0, 0, 0.9);
+  --footer-bg: #0a0a0a;
+  --overlay-bg: rgba(0, 0, 0, 0.8);
+  --section-bg-alt: #1a1a1a;
+}
+
+/* Apply variables to elements */
+body {
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  transition: var(--theme-transition);
+}
+
+.container, 
+.section, 
+article, 
+.content-section {
+  background-color: var(--primary-bg);
+  transition: var(--theme-transition);
+}
+
+.content-section:nth-child(even),
+.motorsport-section,
+.driving-experience-section,
+.financial-section {
+  background-color: var(--section-bg-alt);
+}
+
+header, footer {
+  transition: var(--theme-transition);
+}
+
+/* Card styling */
+.card, 
+.car-card,
+.tech-item, 
+.service-item, 
+.achievement-item,
+.apply-now,
+.category,
+.faq-item {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  box-shadow: 0 5px 15px var(--shadow-color);
+  transition: var(--theme-transition);
+}
+
+/* Text styling */
+h1, h2, h3, h4, h5, h6, p, span, a {
+  color: var(--text-color);
+  transition: var(--theme-transition);
+}
+
+.section-header p,
+.hero-description,
+.content-text p,
+.tech-item p,
+.category p,
+.service-item p {
+  color: var(--text-light);
+}
+
+/* Input fields */
+input, textarea, select {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+  transition: var(--theme-transition);
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  transform: translateY(-3px);
+  background-color: #004f8a;
+}
+
+.dark-mode-toggle i {
+  font-size: 20px;
+}
+
+/* Specific overrides for elements that need special attention in dark mode */
+body.dark-mode .footer {
+  background-color: var(--footer-bg);
+}
+
+body.dark-mode nav {
+  background: var(--header-bg);
+}
+
+body.dark-mode .search-overlay {
+  background: rgba(0, 0, 0, 0.95);
+}
+
+body.dark-mode .cookie-consent {
+  background: rgba(15, 15, 15, 0.98);
+}
+
+body.dark-mode .experience-overlay {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+}
+
+/* Invert white logos and icons if needed */
+body.dark-mode .logo img[src$=".svg"] {
+  filter: brightness(0) invert(1);
+}
+
+/* Additional custom elements for dark mode specifics */
+body.dark-mode .tech-item {
+  background-color: var(--secondary-bg);
+}
+
+body.dark-mode .tech-item:hover {
+  background-color: var(--card-bg);
+}
+
+/* Adjust focus states for dark mode */
+body.dark-mode button:focus,
+body.dark-mode a:focus,
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+  outline-color: var(--accent-color);
+}
+
+/* Additional contrast fixes for accessibility */
+body.dark-mode .btn-more,
+body.dark-mode .category-link,
+body.dark-mode .service-link {
+  color: #3399ff; /* Brighter blue for better contrast in dark mode */
+}
+
+/* Car model cards and pricing tables specific styles */
+
+body.dark-mode .car-card {
+  background-color: var(--card-bg);
+}
+
+body.dark-mode .car-specs {
+  border-top-color: var(--border-color);
+}
+
+body.dark-mode .car-details h3 {
+  color: var(--text-color);
+}
+
+body.dark-mode .car-details p {
+  color: var(--text-light);
+}
+
+body.dark-mode .car-specs span {
+  color: var(--text-light);
+}
+
+body.dark-mode .filter-btn {
+  background-color: var(--secondary-bg);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+body.dark-mode .filter-btn.active,
+body.dark-mode .filter-btn:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
+}
+
+body.dark-mode .pagination a {
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+}
+
+body.dark-mode .pagination a:hover,
+body.dark-mode .pagination a.active {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+body.dark-mode .vehicles-found {
+  color: var(--text-light);
+}
+
+body.dark-mode .vehicles-found strong {
+  color: var(--text-color);
+}
+
+/* Electric page specific elements */
+body.dark-mode .benefits-grid .benefit-card {
+  background-color: var(--card-bg);
+}
+
+body.dark-mode .specs-table {
+  border-color: var(--border-color);
+}
+
+body.dark-mode .specs-table th,
+body.dark-mode .specs-table td {
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+body.dark-mode .specs-table thead {
+  background-color: var(--secondary-bg);
+}
+
+body.dark-mode .specs-table tr:nth-child(even) {
+  background-color: var(--secondary-bg);
+}
+
+/* Explore page specific styles */
+body.dark-mode .model-viewer {
+  background-color: var(--secondary-bg);
+}
+
+body.dark-mode .controls {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+/* Premium Selection specific styles */
+body.dark-mode .testimonial-item {
+  background-color: var(--card-bg);
+}
+
+body.dark-mode .testimonial-content {
+  color: var(--text-color);
+}
+
+body.dark-mode .testimonial-author {
+  color: var(--text-light);
+}
+
+body.dark-mode .control-indicators span {
+  background-color: var(--border-color);
+}
+
+body.dark-mode .control-indicators span.active {
+  background-color: var(--accent-color);
+}
+
+/* Additional general dark mode improvements */
+body.dark-mode .image-container img,
+body.dark-mode .content-image img {
+  filter: brightness(0.9);
+}
+
+body.dark-mode .hero-section,
+body.dark-mode .banner-section {
+  filter: brightness(0.85);
+}
+
+/* Grand Class specific styles */
+body.dark-mode .luxury-features {
+  background-color: var(--secondary-bg);
+}
+
+body.dark-mode .feature-icon {
+  color: var(--accent-color);
+  background-color: var(--card-bg);
+}
+
+/* Add subtle borders to better define sections in dark mode */
+body.dark-mode .section,
+body.dark-mode .container:not(:first-child) {
+  border-top: 1px solid var(--border-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dark-mode-toggle {
+    bottom: 70px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .dark-mode-toggle i {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  body.dark-mode .experience-overlay,
+  body.dark-mode .image-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.98), rgba(0, 0, 0, 0.5), transparent);
+  }
+}
+
+/* Add these specific styles for the Explore page */
+/* 3D Model viewer dark mode styling */
+body.dark-mode model-viewer {
+  background-color: #1a1a1a;
+  border-color: #333;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Design highlights section */
+body.dark-mode .det {
+  background-color: var(--secondary-bg);
+}
+
+body.dark-mode .design-highlights .highlight {
+  background-color: var(--card-bg);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: var(--theme-transition);
+}
+
+body.dark-mode .design-highlights .highlight:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .design-highlights .highlight h2 {
+  color: var(--text-color);
+}
+
+body.dark-mode .design-highlights .highlight p {
+  color: var(--text-light);
+}
+
+/* sa2ff section (closed attracts attention) */
+body.dark-mode .sa2ff {
+  background-color: var(--primary-bg);
+}
+
+body.dark-mode .sa2ff .text-container h1 {
+  color: var(--text-color);
+}
+
+body.dark-mode .sa2ff .text-container p {
+  color: var(--text-light);
+}
+
+/* Premium Selection page specific dark mode styling */
+/* Car cards */
+body.dark-mode .car-card {
+  background-color: var(--card-bg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: var(--border-color);
+}
+
+body.dark-mode .car-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .car-info h3 {
+  color: var(--text-color);
+}
+
+body.dark-mode .price {
+  color: var(--accent-color);
+}
+
+body.dark-mode .dealer {
+  color: var(--text-light);
+}
+
+body.dark-mode .details span {
+  color: var(--text-light);
+  background-color: rgba(45, 45, 45, 0.7);
+}
+
+body.dark-mode .view-details {
+  color: var(--accent-color);
+}
+
+/* Card badges */
+body.dark-mode .card-badge {
+  background-color: rgba(0, 102, 177, 0.8);
+  color: #fff;
+}
+
+body.dark-mode .card-badge.new {
+  background-color: rgba(40, 167, 69, 0.8);
+}
+
+body.dark-mode .card-badge.sale {
+  background-color: rgba(220, 53, 69, 0.8);
+}
+
+/* Benefits section */
+body.dark-mode .benefit-item {
+  background-color: var(--card-bg);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .benefit-item:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .benefit-icon {
+  background-color: rgba(0, 102, 177, 0.2);
+  color: var(--accent-color);
+}
+
+/* Testimonials */
+body.dark-mode .testimonial-item {
+  background-color: var(--card-bg);
+}
+
+body.dark-mode .testimonial-content {
+  background-color: var(--secondary-bg);
+}
+
+body.dark-mode .testimonial-content:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .testimonial-author {
+  color: var(--text-light);
+}
+
+body.dark-mode .author-image {
+  background-color: var(--secondary-bg);
+  border-color: var(--border-color);
+}
+
+body.dark-mode .rating i {
+  color: #ffc107;
+}
+
+/* FAQ section */
+body.dark-mode .faq-item {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+}
+
+body.dark-mode .faq-question {
+  color: var(--text-color);
+}
+
+body.dark-mode .faq-toggle {
+  color: var(--accent-color);
+}
+
+body.dark-mode .faq-answer {
+  color: var(--text-light);
+}
+
+/* View more button */
+body.dark-mode .view-more-btn {
+  background-color: var(--secondary-bg);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+body.dark-mode .view-more-btn:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/* Back to top button */
+body.dark-mode .back-to-top {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .back-to-top:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+/* Additional Explore page dark mode styles */
+body.dark-mode .container {
+  background-color: var(--primary-bg);
+}
+
+body.dark-mode .container h1 {
+  color: var(--text-color);
+}
+
+body.dark-mode .container .description {
+  color: var(--text-light);
+}
+
+body.dark-mode .technical-data p {
+  color: var(--accent-color);
+}
+
+body.dark-mode .technical-data h2 {
+  color: var(--text-color);
+}
+
+body.dark-mode .download-button {
+  border-color: var(--text-color);
+  color: var(--text-color);
+}
+
+body.dark-mode .download-button:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: #fff;
+}
+
+/* Additional Premium Selection page dark mode styles */
+body.dark-mode .featured-section {
+  background-color: var(--primary-bg);
+}
+
+body.dark-mode .feature-box {
+  background-color: var(--secondary-bg);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .feature-box:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .feature-text {
+  background-color: var(--card-bg);
+}
+
+body.dark-mode .feature-text h2 {
+  color: var(--text-color);
+}
+
+body.dark-mode .feature-text p {
+  color: var(--text-light);
+}
+
+body.dark-mode .feature-text a {
+  color: var(--accent-color);
+}
+
+body.dark-mode .section-header h2 {
+  color: var(--text-color);
+}
+
+body.dark-mode .section-header p {
+  color: var(--text-light);
+}
+
+body.dark-mode .testimonials-section {
+  background-color: var(--primary-bg);
+}
+
+body.dark-mode .control-prev,
+body.dark-mode .control-next {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .control-prev:hover,
+body.dark-mode .control-next:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
+body.dark-mode .faq-section {
+  background-color: var(--secondary-bg);
+}
+
+/* Improve the 3D model viewer appearance in dark mode */
+body.dark-mode model-viewer::part(default-progress-bar) {
+  background-color: var(--accent-color);
+}
+
+body.dark-mode model-viewer::part(default-ar-button) {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+/* Enhance image appearance in dark mode */
+body.dark-mode .car-image {
+  filter: brightness(0.9) contrast(1.1);
+  transition: var(--theme-transition);
+}
+
+body.dark-mode .car-image:hover {
+  filter: brightness(1) contrast(1.1);
+} 

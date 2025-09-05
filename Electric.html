@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover BMW's innovative electric vehicle lineup. Experience sustainable mobility with zero emissions and pure driving pleasure.">
+  <meta name="keywords" content="BMW electric, BMW i, electric cars, electric vehicles, sustainable mobility, BMW iX, BMW i4, BMW i5, BMW iX1, zero emissions">
+  <meta name="author" content="BMW Egypt">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="BMW Electric | Sustainable Mobility">
+  <meta property="og:description" content="Discover BMW's innovative electric vehicle lineup. Experience sustainable mobility with zero emissions and pure driving pleasure.">
+  <meta property="og:image" content="photos/i/R.jpeg">
+  <meta property="og:url" content="https://www.bmw-egypt.com/Electric.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <link rel="canonical" href="https://www.bmw-egypt.com/Electric.html">
+  <link rel="icon" type="image/svg+xml" href="BMW_White_Logo.svg.asset.1670245093434.svg">
+  <title>BMW Electric | Sustainable Mobility</title>
+  
+  <link rel="stylesheet" href="Electric.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+  <link rel="stylesheet" href="dark-mode.css">
+  <link rel="stylesheet" href="responsive.css" data-critical="true">
+
+  <!-- Schema.org markup for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Car",
+          "name": "BMW iX",
+          "manufacturer": {
+            "@type": "Organization",
+            "name": "BMW"
+          },
+          "model": "iX",
+          "vehicleEngine": {
+            "@type": "EngineSpecification",
+            "engineType": "Electric"
+          },
+          "fuelType": "Electric",
+          "speed": {
+            "@type": "QuantitativeValue",
+            "value": "4.6",
+            "unitCode": "SEC",
+            "description": "0-60 mph acceleration"
+          },
+          "mileageFromOdometer": {
+            "@type": "QuantitativeValue",
+            "value": "380",
+            "unitCode": "MI",
+            "description": "Maximum range"
+          },
+          "description": "Pioneering innovation meets SUV versatility",
+          "image": "photos/i/R.jpeg",
+          "url": "https://www.bmw-egypt.com/Models.html#i"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Car",
+          "name": "BMW i4",
+          "manufacturer": {
+            "@type": "Organization",
+            "name": "BMW"
+          },
+          "model": "i4",
+          "vehicleEngine": {
+            "@type": "EngineSpecification",
+            "engineType": "Electric"
+          },
+          "fuelType": "Electric",
+          "speed": {
+            "@type": "QuantitativeValue",
+            "value": "3.9",
+            "unitCode": "SEC",
+            "description": "0-60 mph acceleration"
+          },
+          "mileageFromOdometer": {
+            "@type": "QuantitativeValue",
+            "value": "310",
+            "unitCode": "MI",
+            "description": "Maximum range"
+          },
+          "description": "The electric Gran Coupé",
+          "image": "photos/i/BMW i4 Frozen Portimao Blue Metallic.jpg",
+          "url": "https://www.bmw-egypt.com/Models.html#i"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Add preload for critical images -->
+  <link rel="preload" as="image" href="photos/elecelectric.jpg">
+  <link rel="preload" as="image" href="photos/i/R.jpeg">
+  <link rel="preload" as="image" href="photos/i/BMW i4 Frozen Portimao Blue Metallic.jpg">
+  
+  <!-- Add error handling script -->
+  <script>
+    window.addEventListener('error', function(e) {
+      if (e.target.tagName === 'IMG') {
+        console.error('Image failed to load:', e.target.src);
+        e.target.style.border = '2px solid red';
+        e.target.alt = 'Image failed to load: ' + e.target.src;
+      }
+    }, true);
+  </script>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="BMW_White_Logo.svg.asset.1670245093434.svg" alt="BMW Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="Home.html">Home</a></li>
+        <li><a href="Explore.html">Explore</a></li>
+        <li><a href="Models.html">Models</a></li>
+        <li><a href="Electric.html" class="active">Electric</a></li>
+        <li><a href="BMW Premium Selection.html">BMW Premium Selection</a></li>
+        <li><a href="BMWGrandClass.html">BMW Grand Class</a></li>
+        <li><a href="MoreBMW.html">More BMW</a></li>
+      </ul>
+      <div class="actions">
+        <a href="#" title="Find a dealer"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="#" title="Search"><i class="fas fa-search"></i></a>
+        <a href="#" class="mobile-menu-btn"><i class="fas fa-bars"></i></a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="hero-section">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1 class="main-title" data-aos="fade-down">BMW <span>Electric</span></h1>
+      <p class="subtitle" data-aos="fade-up" data-aos-delay="200">Zero Emissions. Maximum Joy.</p>
+      <div class="cta-buttons" data-aos="fade-up" data-aos-delay="400">
+        <a href="#benefits" class="cta-primary">Discover Benefits</a>
+        <a href="Models.html#i" class="cta-secondary">Explore Models</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </div>
+
+  <section id="benefits" class="benefits-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>The Benefits of BMW Electric Cars</h2>
+        <p class="description">
+          Our electric cars offer a practical and sustainable mobility solution for everyday needs. Climate-friendly,
+          convenient, economical. Find out about the benefits of electric driving pleasure that match your lifestyle.
+        </p>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card" data-aos="fade-right">
+          <div class="benefit-image">
+            <picture>
+              <source srcset="photos/bmw-m-hp-bev-ai-01.avif" type="image/avif">
+              <source srcset="photos/bmw-m-hp-bev-ai-01.webp" type="image/webp">
+              <img src="photos/bmw-m-hp-bev-ai-01.jpg" alt="Environmentally friendly driving" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+            </picture>
+          </div>
+          <div class="benefit-content">
+            <div class="benefit-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Environmentally Friendly Driving</h3>
+            <p>
+              Move around without any local emissions or fossil fuels. Your electric BMW lets you travel almost silently and
+              reduce the noise level in the city.
+            </p>
+          </div>
+        </div>
+
+        <div class="benefit-card" data-aos="fade-left">
+          <div class="benefit-image">
+            <picture>
+              <source srcset="photos/bmw-m-hp-bev-prototyp-thumb-03-16x9.avif" type="image/avif">
+              <source srcset="photos/bmw-m-hp-bev-prototyp-thumb-03-16x9.webp" type="image/webp">
+              <img src="photos/bmw-m-hp-bev-prototyp-thumb-03-16x9.jpg" alt="Home charging station" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+            </picture>
+          </div>
+          <div class="benefit-content">
+            <div class="benefit-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Convenient Home Charging</h3>
+            <p>
+              Charge your BMW very conveniently at home. By plugging in overnight, you save the trip to the petrol station and
+              time as well.
+            </p>
+          </div>
+        </div>
+
+        <div class="benefit-card" data-aos="fade-right" data-aos-delay="200">
+          <div class="benefit-image">
+            <picture>
+              <source srcset="photos/g23_technology_updated-os_3to2.webp" type="image/webp">
+              <img src="photos/g23_technology_updated-os_3to2.jpg" alt="Low maintenance" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+            </picture>
+          </div>
+          <div class="benefit-content">
+            <div class="benefit-icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <h3>Economical to Maintain</h3>
+            <p>
+              Electric vehicles do not need any of the parts prone to wear, such as spark plugs, oil filters and an exhaust
+              unit, which results in lower maintenance costs over the life cycle.
+            </p>
+          </div>
+        </div>
+
+        <div class="benefit-card" data-aos="fade-left" data-aos-delay="200">
+          <div class="benefit-image">
+            <picture>
+              <source srcset="photos/g23_design_softtop_3to2.webp" type="image/webp">
+              <img src="photos/g23_design_softtop_3to2.jpg" alt="Vision for the future" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+            </picture>
+          </div>
+          <div class="benefit-content">
+            <div class="benefit-icon">
+              <i class="fas fa-lightbulb"></i>
+            </div>
+            <h3>Our Vision for the Future</h3>
+            <p>
+              Re:think, Re:duce, Re:use and Re:cycle. The BMW i Vision Circular is conceived fully in line with the principles
+              of the circular economy, offering a fascinating look ahead to 2040.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-models">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Featured Electric Models</h2>
+        <p>Experience the extraordinary with BMW electric vehicles</p>
+      </div>
+      
+      <div class="models-showcase">
+        <div class="model-card" data-aos="fade-right" data-aos-delay="100">
+          <picture>
+            <img src="photos/i/R.jpeg" alt="BMW iX" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+          </picture>
+          <div class="model-details">
+            <h3>BMW iX</h3>
+            <p>Pioneering innovation meets SUV versatility</p>
+            <ul class="model-features">
+              <li><i class="fas fa-bolt"></i> Up to 380 miles range</li>
+              <li><i class="fas fa-tachometer-alt"></i> 0-60 mph in 4.6s</li>
+              <li><i class="fas fa-battery-full"></i> Fast charging capability</li>
+            </ul>
+            <a href="Models.html#i" class="model-link">Learn more <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="model-card" data-aos="fade-left" data-aos-delay="100">
+          <picture>
+            <img src="photos/i/BMW i4 Frozen Portimao Blue Metallic.jpg" alt="BMW i4" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+          </picture>
+          <div class="model-details">
+            <h3>BMW i4</h3>
+            <p>The electric Gran Coupé</p>
+            <ul class="model-features">
+              <li><i class="fas fa-bolt"></i> Up to 310 miles range</li>
+              <li><i class="fas fa-tachometer-alt"></i> 0-60 mph in 3.9s</li>
+              <li><i class="fas fa-battery-full"></i> Ultra-fast charging</li>
+            </ul>
+            <a href="Models.html#i" class="model-link">Learn more <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="models-showcase" style="margin-top: 40px;">
+        <div class="model-card" data-aos="fade-right" data-aos-delay="200">
+          <picture>
+            <img src="photos/i/R (1).jpeg" alt="BMW i5" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+          </picture>
+          <div class="model-details">
+            <h3>BMW i5</h3>
+            <p>The first all-electric 5 Series</p>
+            <ul class="model-features">
+              <li><i class="fas fa-bolt"></i> Up to 320 miles range</li>
+              <li><i class="fas fa-tachometer-alt"></i> 0-60 mph in 4.7s</li>
+              <li><i class="fas fa-battery-full"></i> Innovative charging solutions</li>
+            </ul>
+            <a href="Models.html#i" class="model-link">Learn more <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        
+        <div class="model-card" data-aos="fade-left" data-aos-delay="200">
+          <picture>
+            <img src="photos/i/OIP (1).jpeg" alt="BMW iX1" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+          </picture>
+          <div class="model-details">
+            <h3>BMW iX1</h3>
+            <p>Compact electric SUV versatility</p>
+            <ul class="model-features">
+              <li><i class="fas fa-bolt"></i> Up to 270 miles range</li>
+              <li><i class="fas fa-tachometer-alt"></i> 0-60 mph in 5.7s</li>
+              <li><i class="fas fa-battery-full"></i> Compact SUV efficiency</li>
+            </ul>
+            <a href="Models.html#i" class="model-link">Learn more <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sustainability-section">
+    <div class="container">
+      <div class="sustainability-content" data-aos="fade-right">
+        <h2>Driving a Sustainable Future</h2>
+        <p>BMW is committed to a comprehensive approach to sustainability, from production to recycling. Our electric vehicles are just one part of our vision for a greener tomorrow.</p>
+        <a href="#" class="sustainability-link">Discover our sustainability initiatives <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+  
+  <section class="technology-section">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Electric Technology</h2>
+        <p class="description">
+          Innovative eDrive technology with advanced battery cells provides exceptional range and performance, combined with intelligent charging solutions for maximum convenience.
+        </p>
+      </div>
+      
+      <div class="technology-features">
+        <div class="tech-feature" data-aos="fade-up">
+          <div class="tech-icon">
+            <i class="fas fa-charging-station"></i>
+          </div>
+          <h3>Fast Charging</h3>
+          <p>Up to 80% charge in just 35 minutes with DC fast charging capability on all BMW electric models.</p>
+          <picture>
+            <source srcset="photos/bmw-m-hp-bev-ai-01.avif" type="image/avif">
+            <source srcset="photos/bmw-m-hp-bev-ai-01.webp" type="image/webp">
+            <img src="photos/bmw-m-hp-bev-ai-01.jpg" alt="Fast Charging" class="tech-image" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+          </picture>
+        </div>
+        
+        <div class="tech-feature" data-aos="fade-up" data-aos-delay="100">
+          <div class="tech-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>BMW Charging App</h3>
+          <p>Plan your route, find charging stations, and manage your charging process with the intuitive BMW Charging app.</p>
+          <picture>
+            <source srcset="photos/bmw-m-hp-bev-prototyp-thumb-03-16x9.avif" type="image/avif">
+            <source srcset="photos/bmw-m-hp-bev-prototyp-thumb-03-16x9.webp" type="image/webp">
+            <img src="photos/bmw-m-hp-bev-prototyp-thumb-03-16x9.jpg" alt="BMW Charging App" class="tech-image" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+          </picture>
+        </div>
+        
+        <div class="tech-feature" data-aos="fade-up" data-aos-delay="200">
+          <div class="tech-icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <h3>BMW eDrive</h3>
+          <p>Fifth-generation BMW eDrive technology delivers exceptional efficiency and driving dynamics.</p>
+          <picture>
+            <source srcset="photos/g23_technology_updated-os_3to2.webp" type="image/webp">
+            <img src="photos/g23_technology_updated-os_3to2.jpg" alt="BMW eDrive" class="tech-image" loading="eager" onerror="this.onerror=null; this.src='photos/elecelectric.jpg';">
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cookie Consent -->
+  <div class="cookie-consent">
+    <div class="cookie-text">
+      <p>We use cookies to enhance your experience on our website. By continuing to use our site, you consent to our use of cookies.</p>
+    </div>
+    <div class="cookie-buttons">
+      <button class="cookie-btn accept">Accept All</button>
+      <button class="cookie-btn settings">Cookie Settings</button>
+    </div>
+  </div>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay">
+    <div class="search-container">
+      <form class="search-form">
+        <input type="text" placeholder="Search for models, features, or services...">
+        <button type="submit"><i class="fas fa-search"></i></button>
+      </form>
+      <button class="close-search"><i class="fas fa-times"></i></button>
+      <div class="quick-links">
+        <h3>Popular Searches</h3>
+        <ul>
+          <li><a href="Electric.html">Electric Vehicles</a></li>
+          <li><a href="Models.html">SUV Models</a></li>
+          <li><a href="#">Dealer Locator</a></li>
+          <li><a href="#">Build Your Own</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-column" data-aos="fade-up" data-aos-delay="100">
+        <h4>Explore BMW</h4>
+        <ul>
+          <li><a href="#">New Vehicles</a></li>
+          <li><a href="#">Electric Models</a></li>
+          <li><a href="#">Concept Vehicles</a></li>
+          <li><a href="#">BMW M</a></li>
+        </ul>
+      </div>
+      <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Financial Services</a></li>
+          <li><a href="#">Service & Maintenance</a></li>
+          <li><a href="#">Warranty</a></li>
+          <li><a href="#">Parts & Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-column" data-aos="fade-up" data-aos-delay="300">
+        <h4>About BMW</h4>
+        <ul>
+          <li><a href="#">Our Heritage</a></li>
+          <li><a href="#">Sustainability</a></li>
+          <li><a href="#">Innovation</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-column" data-aos="fade-up" data-aos-delay="400">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">Find a Dealer</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Test Drive</a></li>
+          <li><a href="#">Request Brochure</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-social">
+      <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; BMW Group 2025. All rights reserved.</p>
+      <ul>
+        <li><a href="#">Legal Notice</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="main.js"></script>
+  <script src="js/data-loader.js"></script>
+
+  <!-- Add debugging script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check all images
+      document.querySelectorAll('img').forEach(img => {
+        if (!img.complete || img.naturalHeight === 0) {
+          console.warn('Image not loaded:', img.src);
+        }
+      });
+      
+      // Check text visibility
+      const textElements = document.querySelectorAll('h1, h2, h3, p, span');
+      textElements.forEach(el => {
+        const style = window.getComputedStyle(el);
+        if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') {
+          console.warn('Text element hidden:', el);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

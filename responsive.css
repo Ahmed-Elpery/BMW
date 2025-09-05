@@ -1,0 +1,262 @@
+/* Mobile menu JavaScript support */
+.mobile-menu-toggle,
+.mobile-menu-btn {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .mobile-menu-toggle,
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  
+  /* Hamburger animation */
+  .mobile-menu-toggle i,
+  .mobile-menu-btn i {
+    transition: transform 0.3s ease;
+  }
+  
+  .mobile-menu-toggle.active i.fa-bars,
+  .mobile-menu-btn.active i.fa-bars {
+    transform: rotate(90deg);
+  }
+  
+  /* Fixed navigation styles for tablets */
+  nav {
+    width: 95% !important;
+    max-width: 95% !important;
+    border-radius: 30px !important;
+  }
+  
+  .nav-links a {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+/* Responsive CSS fixes for BMW website 
+ * This file contains responsive design fixes for all pages
+ */
+
+/* Prevent horizontal scrolling on mobile */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Fix for iOS Safari 100vh issue */
+:root {
+  --vh: 1vh;
+}
+
+/* Make all images responsive by default */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Global responsive fixes */
+@media (max-width: 1200px) {
+  .container, 
+  .profile-container,
+  .footer-container {
+    width: 95%;
+    max-width: 1140px;
+  }
+  
+  /* Fix text sizing for larger screens */
+  h1 {
+    font-size: 2.8rem;
+  }
+  
+  h2 {
+    font-size: 2.2rem;
+  }
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+  /* Navigation bar fixes for mobile */
+  nav {
+    width: 90% !important;
+    max-width: 90% !important;
+    border-radius: 25px !important;
+    padding: 0 15px !important;
+    height: 60px !important;
+  }
+  
+  .logo img {
+    height: 30px;
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 80px !important;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    clip-path: circle(0% at top right);
+    transition: all 0.5s ease-out;
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .nav-links.active {
+    clip-path: circle(150% at top right);
+    pointer-events: all;
+    padding-bottom: 30px;
+  }
+  
+  .nav-links li {
+    margin: 12px 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav-links a {
+    display: inline-block;
+    width: 80%;
+    padding: 10px 0;
+    font-size: 16px;
+  }
+  
+  .actions {
+    gap: 10px;
+  }
+  
+  .actions a {
+    margin-left: 10px;
+    font-size: 16px;
+  }
+  
+  /* Fix for disappearing menu items when site is scrolled */
+  body.menu-open {
+    overflow: hidden;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  nav {
+    width: 95% !important;
+    border-radius: 20px !important;
+    padding: 0 10px !important;
+    height: 55px !important;
+  }
+  
+  .logo img {
+    height: 25px;
+  }
+  
+  .actions a {
+    margin-left: 8px;
+    font-size: 15px;
+  }
+}
+
+/* Sound control button styles */
+.sound-control {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.sound-control:hover {
+  background: rgba(0, 102, 177, 0.8);
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .sound-control {
+    bottom: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Portrait orientation specific fixes */
+@media screen and (orientation: portrait) and (max-width: 768px) {
+  /* Ensure navigation is properly positioned in portrait mode */
+  nav {
+    width: 92% !important;
+    top: 1rem !important;
+  }
+  
+  /* Ensure the dropdown menu appears below the nav bar */
+  .nav-links {
+    top: 70px !important;
+  }
+  
+  /* Better spacing for nav items in portrait */
+  .nav-links li {
+    margin: 8px 0;
+  }
+  
+  /* Full-width buttons for easier tapping */
+  .nav-links a {
+    width: 85%;
+    padding: 12px 0;
+  }
+  
+  /* Fix for navigation items being cut off when menu is open */
+  .nav-links.active {
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+    padding-bottom: 50px;
+  }
+}
+
+/* Handle very small devices in portrait */
+@media screen and (orientation: portrait) and (max-width: 480px) {
+  nav {
+    width: 94% !important;
+    height: 50px !important;
+  }
+  
+  .nav-links {
+    top: 60px !important;
+  }
+  
+  /* Increase tap target size */
+  .actions a {
+    padding: 8px;
+  }
+  
+  /* Bigger menu button for easier tapping */
+  .mobile-menu-toggle,
+  .mobile-menu-btn {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Improve the hamburger icon appearance */
+.mobile-menu-toggle i.fa-times,
+.mobile-menu-btn i.fa-times {
+  color: #0066B1;
+} 

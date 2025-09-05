@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://cdnjs.cloudflare.com; style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' https://via.placeholder.com https://www.gstatic.com data:; connect-src 'self' https://*.firebaseio.com https://*.googleapis.com; frame-src 'self' https://*.firebaseapp.com; object-src 'none';">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <title>BMW - My Profile</title>
+    
+    <!-- PWA Support -->
+    <meta name="theme-color" content="#0066b1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://www.gstatic.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Critical CSS first, non-critical later -->
+    <link rel="stylesheet" href="profile.css" data-critical="true">
+    <link rel="stylesheet" href="dark-mode.css" data-critical="false">
+    <link rel="stylesheet" href="responsive.css" data-critical="true">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" data-critical="false" />
+    <link rel="icon" type="image/svg+xml" href="BMW_White_Logo.svg.asset.1670245093434.svg">
+    
+    <!-- SEO Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "name": "BMW User Profile",
+      "description": "Manage your BMW account, preferences, and saved vehicles",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "BMW Owner",
+        "memberOf": {
+          "@type": "Organization",
+          "name": "BMW",
+          "url": "https://www.bmw.com"
+        }
+      }
+    }
+    </script>
+    
+    <!-- Firebase SDK with defer to not block rendering -->
+    <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="BMW_White_Logo.svg.asset.1670245093434.svg" alt="BMW Logo" />
+            </div>
+            <ul class="nav-links">
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Explore.html">Explore</a></li>
+                <li><a href="Models.html">Models</a></li>
+                <li><a href="Electric.html">Electric</a></li>
+                <li><a href="BMWGrandClass.html">BMW Grand Class</a></li>
+                <li><a href="BMW Premium Selection.html">BMW Premium Selection</a></li>
+                <li><a href="MoreBMW.html">More BMW</a></li>
+            </ul>
+            <div class="actions">
+                <a href="#" title="Find a dealer"><i class="fas fa-map-marker-alt"></i></a>
+                <a href="#" title="Search"><i class="fas fa-search"></i></a>
+                <a href="#" id="logout-btn" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="profile-container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                <div class="edit-cover">
+                    <button id="change-cover-btn"><i class="fas fa-camera"></i> Change Cover</button>
+                </div>
+            </div>
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    <div class="avatar-container">
+                        <img id="profile-image" src="https://via.placeholder.com/150" alt="Profile Picture">
+                        <div class="avatar-overlay">
+                            <label for="avatar-upload" class="upload-icon">
+                                <i class="fas fa-camera"></i>
+                            </label>
+                            <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <h1 id="user-name">Loading...</h1>
+                    <p id="user-bio">Add a short bio to tell people more about yourself</p>
+                    <div class="user-meta">
+                        <span><i class="fas fa-envelope"></i> <span id="user-email">Loading...</span></span>
+                        <span><i class="fas fa-map-marker-alt"></i> <span id="user-location">Not specified</span></span>
+                        <span><i class="fas fa-briefcase"></i> <span id="user-occupation">Not specified</span></span>
+                        <span><i class="fas fa-building"></i> <span id="user-company">Not specified</span></span>
+                        <span><i class="fas fa-calendar-alt"></i> Member since <span id="user-created">Loading...</span></span>
+                    </div>
+                    <div class="profile-social">
+                        <a href="#" id="user-website-link" target="_blank" class="social-link hidden"><i class="fas fa-globe"></i></a>
+                        <a href="#" id="user-linkedin-link" target="_blank" class="social-link hidden"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <button id="edit-profile-btn" class="btn-primary">Edit Profile</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-content">
+                        <section class="profile-section user-preferences">                <div class="section-header">                    <h2>My Preferences</h2>                    <button id="edit-preferences-btn" class="btn-secondary"><i class="fas fa-edit"></i></button>                </div>                <div class="preferences-grid">                    <div class="preference-item">                        <div class="preference-icon">                            <i class="fas fa-car"></i>                        </div>                        <div class="preference-info">                            <h3>Preferred Series</h3>                            <p id="preferred-series-display">M Series</p>                        </div>                    </div>                    <div class="preference-item">                        <div class="preference-icon">                            <i class="fas fa-palette"></i>                        </div>                        <div class="preference-info">                            <h3>Favorite Color</h3>                            <p id="favorite-color">Alpine White</p>                        </div>                    </div>                    <div class="preference-item">                        <div class="preference-icon">                            <i class="fas fa-cog"></i>                        </div>                        <div class="preference-info">                            <h3>Transmission</h3>                            <p id="transmission-preference">Automatic</p>                        </div>                    </div>                    <div class="preference-item">                        <div class="preference-icon">                            <i class="fas fa-bell"></i>                        </div>                        <div class="preference-info">                            <h3>Notifications</h3>                            <div class="toggle-switch">                                <input type="checkbox" id="notification-toggle" checked>                                <label for="notification-toggle"></label>                            </div>                        </div>                    </div>                </div>            </section>            <section class="profile-section security">                <div class="section-header">                    <h2>Security Settings</h2>                    <button id="edit-security-btn" class="btn-secondary"><i class="fas fa-shield-alt"></i></button>                </div>                <div class="security-options">                    <div class="security-item">                        <div class="security-icon">                            <i class="fas fa-lock"></i>                        </div>                        <div class="security-info">                            <h3>Two-Factor Authentication</h3>                            <p id="2fa-status">Not enabled</p>                            <button id="setup-2fa-btn" class="btn-outline">Enable 2FA</button>                        </div>                    </div>                    <div class="security-item">                        <div class="security-icon">                            <i class="fas fa-key"></i>                        </div>                        <div class="security-info">                            <h3>Password</h3>                            <p>Last changed: <span id="password-changed">Never</span></p>                            <button id="change-password-btn" class="btn-outline">Change Password</button>                        </div>                    </div>                    <div class="security-item">                        <div class="security-icon">                            <i class="fas fa-history"></i>                        </div>                        <div class="security-info">                            <h3>Login History</h3>                            <p>Last login: <span id="last-login">Loading...</span></p>                            <button id="view-history-btn" class="btn-outline">View History</button>                        </div>                    </div>                </div>            </section>            <section class="profile-section favorite-cars">
+                <div class="section-header">
+                    <h2>My Favorite Cars</h2>
+                    <button id="add-car-btn" class="btn-secondary"><i class="fas fa-plus"></i></button>
+                </div>
+                <div class="cars-grid" id="favorite-cars-grid">
+                    <!-- Cars will be loaded dynamically -->
+                    <div class="car-card">
+                        <div class="car-image">
+                            <img src="photos/bmw-m4-coupe-lci-flyout1.avif" alt="BMW M4">
+                        </div>
+                        <div class="car-details">
+                            <h3>BMW M4 Competition</h3>
+                            <p>2023 • 503 HP</p>
+                            <div class="car-actions">
+                                <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                                <button class="btn-icon"><i class="fas fa-info-circle"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="car-card">
+                        <div class="car-image">
+                            <img src="photos/i/BMW i4 Frozen Portimao Blue Metallic.jpg" alt="BMW i4">
+                        </div>
+                        <div class="car-details">
+                            <h3>BMW i4 M50</h3>
+                            <p>2023 • Electric</p>
+                            <div class="car-actions">
+                                <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                                <button class="btn-icon"><i class="fas fa-info-circle"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="car-card">
+                        <div class="car-image">
+                            <img src="photos/bmw-x7-m60i-flyout-031.avif" alt="BMW X7">
+                        </div>
+                        <div class="car-details">
+                            <h3>BMW X7 M60i</h3>
+                            <p>2023 • Luxury SUV</p>
+                            <div class="car-actions">
+                                <button class="btn-icon"><i class="fas fa-heart"></i></button>
+                                <button class="btn-icon"><i class="fas fa-info-circle"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-car-card" id="add-car-card">
+                        <div class="add-car-content">
+                            <i class="fas fa-plus-circle"></i>
+                            <p>Add Car</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="profile-section activity">
+                <div class="section-header">
+                    <h2>Recent Activity</h2>
+                </div>
+                <div class="activity-timeline">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>You added <strong>BMW M4 Competition</strong> to your favorites</p>
+                            <span class="activity-time">2 days ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>You configured a <strong>BMW X5 M Competition</strong></p>
+                            <span class="activity-time">1 week ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                        <div class="activity-content">
+                            <p>You updated your profile information</p>
+                            <span class="activity-time">2 weeks ago</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="edit-profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Profile</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-profile-form">
+                    <div class="form-tabs">
+                        <div class="form-tab active" data-tab="basic-info">Basic Info</div>
+                        <div class="form-tab" data-tab="professional-info">Professional Info</div>
+                    </div>
+                    
+                    <div class="form-section active" id="basic-info-section">
+                        <div class="input-group">
+                            <label for="edit-name">Full Name</label>
+                            <input type="text" id="edit-name" placeholder="Enter your full name">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit-bio">Bio</label>
+                            <textarea id="edit-bio" placeholder="Tell us about yourself"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="edit-location">Location</label>
+                            <input type="text" id="edit-location" placeholder="City, Country">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section" id="professional-info-section">
+                        <div class="input-group">
+                            <label for="edit-occupation">Occupation</label>
+                            <input type="text" id="edit-occupation" placeholder="Your job title">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit-company">Company/Organization</label>
+                            <input type="text" id="edit-company" placeholder="Where you work">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit-website">Website</label>
+                            <input type="url" id="edit-website" placeholder="https://yourwebsite.com">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit-linkedin">LinkedIn Profile</label>
+                            <input type="url" id="edit-linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit-skills">Skills</label>
+                            <textarea id="edit-skills" placeholder="List your key skills, separated by commas"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="edit-education">Education</label>
+                            <textarea id="edit-education" placeholder="Your educational background"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="edit-experience">Experience</label>
+                            <textarea id="edit-experience" placeholder="Brief summary of your work experience"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary cancel-edit">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Preferences Modal -->
+    <div class="modal" id="edit-preferences-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Preferences</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-preferences-form">
+                    <div class="input-group">
+                        <label for="preferred-series">Preferred Series</label>
+                        <select id="preferred-series">
+                            <option value="1">1 Series</option>
+                            <option value="2">2 Series</option>
+                            <option value="3">3 Series</option>
+                            <option value="4">4 Series</option>
+                            <option value="5">5 Series</option>
+                            <option value="6">6 Series</option>
+                            <option value="7">7 Series</option>
+                            <option value="8">8 Series</option>
+                            <option value="X">X Series</option>
+                            <option value="Z">Z Series</option>
+                            <option value="M" selected>M Series</option>
+                            <option value="i">i Series</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="favorite-color-select">Favorite Color</label>
+                        <select id="favorite-color-select">
+                            <option value="Alpine White" selected>Alpine White</option>
+                            <option value="Black Sapphire">Black Sapphire</option>
+                            <option value="Mineral Grey">Mineral Grey</option>
+                            <option value="Portimao Blue">Portimao Blue</option>
+                            <option value="San Marino Blue">San Marino Blue</option>
+                            <option value="Tanzanite Blue">Tanzanite Blue</option>
+                            <option value="Brooklyn Grey">Brooklyn Grey</option>
+                            <option value="Isle of Man Green">Isle of Man Green</option>
+                            <option value="Toronto Red">Toronto Red</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="transmission-select">Transmission</label>
+                        <select id="transmission-select">
+                            <option value="Automatic" selected>Automatic</option>
+                            <option value="Manual">Manual</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Notifications</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="email-notifications" checked>
+                            <label for="email-notifications">Email Notifications</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="new-model-notifications" checked>
+                            <label for="new-model-notifications">New Model Alerts</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="event-notifications">
+                            <label for="event-notifications">Event Invitations</label>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary cancel-edit">Cancel</button>
+                        <button type="submit" class="btn-primary">Save Preferences</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Car Modal -->
+    <div class="modal" id="add-car-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Favorite Car</h2>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <form id="add-car-form">
+                    <div class="input-group">
+                        <label for="car-model">Car Model</label>
+                        <select id="car-model">
+                            <option value="">Select a model</option>
+                            <option value="BMW M3 Competition">BMW M3 Competition</option>
+                            <option value="BMW M4 Competition">BMW M4 Competition</option>
+                            <option value="BMW M5 Competition">BMW M5 Competition</option>
+                            <option value="BMW M8 Competition">BMW M8 Competition</option>
+                            <option value="BMW X3 M">BMW X3 M</option>
+                            <option value="BMW X5 M">BMW X5 M</option>
+                            <option value="BMW X6 M">BMW X6 M</option>
+                            <option value="BMW i4 M50">BMW i4 M50</option>
+                            <option value="BMW i7 M70">BMW i7 M70</option>
+                            <option value="BMW iX M60">BMW iX M60</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="car-year">Year</label>
+                        <select id="car-year">
+                            <option value="2023" selected>2023</option>
+                            <option value="2022">2022</option>
+                            <option value="2021">2021</option>
+                            <option value="2020">2020</option>
+                            <option value="2019">2019</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="car-color">Color</label>
+                        <select id="car-color">
+                            <option value="Alpine White">Alpine White</option>
+                            <option value="Black Sapphire">Black Sapphire</option>
+                            <option value="Mineral Grey">Mineral Grey</option>
+                            <option value="Portimao Blue">Portimao Blue</option>
+                            <option value="San Marino Blue">San Marino Blue</option>
+                            <option value="Tanzanite Blue">Tanzanite Blue</option>
+                            <option value="Brooklyn Grey">Brooklyn Grey</option>
+                            <option value="Isle of Man Green">Isle of Man Green</option>
+                            <option value="Toronto Red">Toronto Red</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary cancel-edit">Cancel</button>
+                        <button type="submit" class="btn-primary">Add Car</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+        <div class="overlay" id="modal-overlay"></div>    <!-- 2FA Setup Modal -->    <div class="modal" id="setup-2fa-modal">        <div class="modal-content">            <div class="modal-header">                <h2>Setup Two-Factor Authentication</h2>                <button class="close-modal"><i class="fas fa-times"></i></button>            </div>            <div class="modal-body">                <div class="setup-steps">                    <div class="step active" id="step-1">                        <h3>Step 1: Download Authentication App</h3>                        <p>Download and install an authentication app like Google Authenticator or Authy on your mobile device.</p>                        <div class="app-links">                            <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank" class="app-link">                                <i class="fab fa-android"></i> Google Play                            </a>                            <a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank" class="app-link">                                <i class="fab fa-apple"></i> App Store                            </a>                        </div>                        <button class="btn-primary next-step">Next</button>                    </div>                    <div class="step" id="step-2">                        <h3>Step 2: Scan QR Code</h3>                        <p>Open your authentication app and scan this QR code:</p>                        <div class="qr-container" id="qr-code">                            <!-- QR code will be generated here -->                            <div class="qr-placeholder">                                <i class="fas fa-qrcode"></i>                                <p>Loading QR Code...</p>                            </div>                        </div>                        <p class="manual-code">Or enter this code manually: <span id="manual-entry-code">Loading...</span></p>                        <button class="btn-secondary prev-step">Back</button>                        <button class="btn-primary next-step">Next</button>                    </div>                    <div class="step" id="step-3">                        <h3>Step 3: Verify Code</h3>                        <p>Enter the 6-digit verification code from your authentication app:</p>                        <div class="verification-input">                            <input type="text" id="verification-code" maxlength="6" placeholder="000000" autocomplete="off">                        </div>                        <div id="verification-error" class="error-message"></div>                        <button class="btn-secondary prev-step">Back</button>                        <button class="btn-primary" id="verify-code-btn">Verify & Enable</button>                    </div>                    <div class="step" id="step-4">                        <h3>Success!</h3>                        <div class="success-icon">                            <i class="fas fa-check-circle"></i>                        </div>                        <p>Two-factor authentication has been successfully enabled for your account.</p>                        <p>You'll now need to enter a verification code each time you sign in.</p>                        <button class="btn-primary close-modal">Done</button>                    </div>                </div>            </div>        </div>    </div>    <!-- Change Password Modal -->    <div class="modal" id="change-password-modal">        <div class="modal-content">            <div class="modal-header">                <h2>Change Password</h2>                <button class="close-modal"><i class="fas fa-times"></i></button>            </div>            <div class="modal-body">                <form id="change-password-form">                    <div class="input-group">                        <label for="current-password">Current Password</label>                        <input type="password" id="current-password" placeholder="Enter your current password" required>                    </div>                    <div class="input-group">                        <label for="new-password">New Password</label>                        <input type="password" id="new-password" placeholder="Enter your new password" required>                        <div class="password-strength">                            <div class="strength-meter">                                <div class="strength-meter-fill" id="new-password-strength"></div>                            </div>                            <span id="new-password-strength-text">Password strength</span>                        </div>                    </div>                    <div class="input-group">                        <label for="confirm-new-password">Confirm New Password</label>                        <input type="password" id="confirm-new-password" placeholder="Confirm your new password" required>                    </div>                    <div id="password-change-error" class="error-message"></div>                    <div class="form-actions">                        <button type="button" class="btn-secondary cancel-password-change">Cancel</button>                        <button type="submit" class="btn-primary">Update Password</button>                    </div>                </form>            </div>        </div>    </div>    <!-- Login History Modal -->    <div class="modal" id="login-history-modal">        <div class="modal-content">            <div class="modal-header">                <h2>Login History</h2>                <button class="close-modal"><i class="fas fa-times"></i></button>            </div>            <div class="modal-body">                <div class="login-history-list" id="login-history-list">                    <!-- Login history will be loaded here -->                    <div class="loading-spinner">                        <i class="fas fa-spinner fa-spin"></i>                        <p>Loading login history...</p>                    </div>                </div>            </div>        </div>    </div>    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>BMW Egypt</h3>
+                <p>The Ultimate Driving Machine</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="Home.html">Home</a></li>
+                    <li><a href="Models.html">Models</a></li>
+                    <li><a href="Electric.html">Electric</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Cairo, Egypt</p>
+                <p><i class="fas fa-phone"></i> +20 123 456 7890</p>
+                <p><i class="fas fa-envelope"></i> info@bmw-egypt.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 BMW Egypt. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="profile.js"></script>
+</body>
+</html> 

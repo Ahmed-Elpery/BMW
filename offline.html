@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW - Currently Offline</title>
+    <link rel="icon" type="image/svg+xml" href="BMW_White_Logo.svg.asset.1670245093434.svg">
+    <style>
+        :root {
+            --primary-color: #0066b1;
+            --secondary-color: #1c69d4;
+            --text-color: #333;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'BMW Type Next', Arial, Helvetica, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .offline-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+        
+        .logo img {
+            width: 80px;
+            height: auto;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .offline-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .refresh-btn {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .refresh-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .cached-content {
+            margin-top: 40px;
+            border-top: 1px solid #eaeaea;
+            padding-top: 30px;
+        }
+        
+        .cached-link {
+            display: block;
+            margin: 10px 0;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 10px;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .cached-link:hover {
+            background-color: #f5f5f5;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .offline-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+  <link rel="stylesheet" href="responsive.css" data-critical="true">
+</head>
+<body>
+    <div class="offline-container">
+        <div class="logo">
+            <img src="BMW_White_Logo.svg.asset.1670245093434.svg" alt="BMW Logo">
+        </div>
+        
+        <div class="offline-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor">
+                <path d="M12,3C7.58,3 4,6.58 4,11H1L5.5,15.5L10,11H7C7,8.24 9.24,6 12,6C14.76,6 17,8.24 17,11C17,13.76 14.76,16 12,16C10.66,16 9.44,15.44 8.62,14.62L7.2,16.04C8.4,17.24 10.12,18 12,18C15.42,18 18,15.42 18,12C18,8.58 15.42,6 12,6V3M12,9V12L15,15H21V21H15V15.87L12,12.87V9"/>
+            </svg>
+        </div>
+        
+        <h1>You're currently offline</h1>
+        
+        <p>It seems you don't have an internet connection right now. Some features of the BMW website may be unavailable until you're back online.</p>
+        
+        <button class="refresh-btn" onclick="window.location.reload()">
+            <span>Refresh</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M23 4v6h-6"></path>
+                <path d="M1 20v-6h6"></path>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10"></path>
+                <path d="M20.49 15a9 9 0 0 1-14.85 3.36L1 14"></path>
+            </svg>
+        </button>
+        
+        <div class="cached-content">
+            <h2>Available Offline</h2>
+            <p>You can still access these pages:</p>
+            <div id="cached-pages">
+                <a href="/" class="cached-link">Home</a>
+                <a href="/profile.html" class="cached-link">My Profile</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Check if we're in a service worker context and display available offline pages
+        if ('caches' in window) {
+            caches.open('bmw-cache-v1').then(cache => {
+                cache.keys().then(requests => {
+                    const htmlPages = requests.filter(request => 
+                        request.url.endsWith('.html') && 
+                        !request.url.includes('offline.html')
+                    );
+                    
+                    if (htmlPages.length > 0) {
+                        const cachedPagesContainer = document.getElementById('cached-pages');
+                        cachedPagesContainer.innerHTML = '';
+                        
+                        htmlPages.forEach(request => {
+                            const url = request.url;
+                            const pageName = url.substring(url.lastIndexOf('/') + 1);
+                            const displayName = pageName.replace('.html', '').replace(/([A-Z])/g, ' $1').trim();
+                            
+                            const link = document.createElement('a');
+                            link.href = url;
+                            link.className = 'cached-link';
+                            link.textContent = displayName || 'Home';
+                            
+                            cachedPagesContainer.appendChild(link);
+                        });
+                    }
+                });
+            });
+        }
+        
+        // Check connection status and refresh when back online
+        window.addEventListener('online', () => {
+            document.querySelector('h1').textContent = 'You\'re back online!';
+            setTimeout(() => window.location.reload(), 1500);
+        });
+    </script>
+</body>
+</html> 
